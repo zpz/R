@@ -1,0 +1,162 @@
+\documentclass[12pt]{article}
+\usepackage{techart}
+\usepackage{ulem}
+
+\newcommand\Rf[1]{\texttt{#1}}
+
+\begin{document}
+\title{R Tips}
+\maketitle
+
+\begin{enumerate}
+
+\item
+For simple timing, use \Rf{system.time}.
+To time a group of statements, enclose them in braces.
+
+\item
+To find out the number of TRUE elements in a vector, \eg,
+\Rf{sum(x > 0.5)} is \emph{faster} than
+\Rf{length(which(x > 0.5))}.
+
+\item
+For a list, pre-allocate the full length helps slightly:
+\begin{verbatim}
+> system.time({
++   mat <- vector('list', 10000);
++   for (i in 1:10000) mat[[i]] <- matrix(1:10000, 100, 100)
++ })
+   user  system elapsed
+  1.220   0.024   1.242
+>
+>
+> system.time({
++   mat <- list();
++   for (i in 1:10000) mat[[i]] <- matrix(1:10000, 100, 100)
++ })
+   user  system elapsed
+  1.741   0.000   1.740
+\end{verbatim}
+In contrast, using
+\Rf{mat <- append(mat, list(...))}
+would be \emph{very} slow.
+
+\item
+For long loops,
+move common operations,
+such as multiplication or summation by a constant,
+out of the loop.
+The time consumption can be appreciable.
+
+\item
+Use \Rf{seq\_along}.
+
+\item
+Compare
+\begin{verbatim}
+> system.time({
++   M <- matrix(0, 100, 100);
++   for (i in 1:100000) M[,] <- matrix(1:10000, 100, 100)
++ })
+   user  system elapsed
+ 19.041   0.000  19.041
+>
+>
+> system.time({
++   M <- matrix(0, 100, 100);
++   for (i in 1:100000) M <- matrix(1:10000, 100, 100)
++ })
+   user  system elapsed
+  9.933   0.000   9.936
+\end{verbatim}
+
+Compare
+\begin{verbatim}
+> system.time({
++   M <- matrix(0, 100, 100);
++   for (i in 1 : 10000) M <- M + matrix(10000, 100, 100)
++ })
+   user  system elapsed
+    1.5     0.0     1.5
+>
+>
+> system.time({
++   M <- matrix(0, 100, 100);
++   for (i in 1 : 10000) M[,] <- M + matrix(10000, 100, 100)
++ })
+   user  system elapsed
+  2.456   0.000   2.454
+\end{verbatim}
+
+\item
+Use \Rf{mapply} and \Rf{Vectorize} to vectorize a function that usually
+does not take vector arguments:
+\begin{verbatim}
+> mapply(
++   function(lo, hi) {integrate(dnorm, lo, hi)$value},
++   c(-Inf, 0.3),
++   c(0.3, Inf))
+[1] 0.6179114 0.3820886
+>
+>
+> Integrate <- Vectorize(
++   function(fn, lo, hi) integrate(fn, lo, hi)$value,
++   vectorize.args = c('lo', 'hi')
++ )
+> Integrate(dnorm, c(-Inf, 0.3), c(0.3, Inf))
+[1] 0.6179114 0.3820886
+\end{verbatim}
+
+
+\item
+\Rf{c(matrix(...))} is \emph{faster} than
+\Rf{as.vector(matrix(...))}.
+
+\item
+\Rf{combn(n, k)} is very slow.
+For $k = 2$, do not use this function.
+Instead, construct the result directly.
+Direct construction may work for $k < 2$ as well.
+
+\item
+\Rf{stopifnot} takes appreciable time.
+\Rf{identical(a, b)} is slower than \Rf{a == b}.
+
+
+\item
+The seemingly harmless function \Rf{is.vector} takes appreciable time:
+\begin{verbatim}
+> x <- 1:1000
+> system.time({for (i in 1 : 1000000) is.vector(x) })
+   user  system elapsed
+  9.256   0.020   9.296
+> system.time({for (i in 1 : 1000000) is.null(dim(x)) })
+   user  system elapsed
+  4.604   0.008   4.611
+\end{verbatim}
+\Rf{is.matrix} is faster than \Rf{is.vector}. See
+\begin{verbatim}
+> x <- matrix(1:10000, 100, 100)
+> system.time({for (i in 1 : 1000000) is.matrix(x) })
+   user  system elapsed
+  3.000   0.012   3.022
+> system.time({for (i in 1 : 1000000) is.vector(x) })
+   user  system elapsed
+  9.244   0.016   9.261
+> system.time({for (i in 1 : 1000000) !is.matrix(x) })
+   user  system elapsed
+  5.256   0.016   5.272
+> system.time({for (i in 1 : 1000000) !is.vector(x) })
+   user  system elapsed
+ 11.692   0.020  12.108
+> system.time({for (i in 1 : 1000000) !is.null(dim(x)) })
+   user  system elapsed
+  6.828   0.028   6.878
+> system.time({for (i in 1 : 1000000) is.null(dim(x)) })
+   user  system elapsed
+  4.788   0.016   4.808
+\end{verbatim}
+The function \Rf{length} also takes appreciable time.
+
+\end{enumerate}
+\end{document}

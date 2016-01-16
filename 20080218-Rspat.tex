@@ -1,0 +1,316 @@
+\documentclass[12pt]{article}
+\usepackage{techart}
+\usepackage{ulem}
+
+\begin{document}
+\title{Spatial Statistics Resources in R}
+\maketitle
+
+This is an index of R packages that are mainly concerned about
+spatial data and spatial analysis.
+Listed information includes
+scope, authors and maintainer,
+history (launching time, latest version),
+dependency on other spatially-concerned packages,
+academic documentation (as opposed to technical documentation),
+etc.
+
+Projects that are apparently neither active nor depended upon by active
+ones are not included.
+Neither are those that are not likely to be useful to us.
+Informally there are several broad groups:
+(1) geostat and continuously-valued fields;
+(2) spatial point patterns;
+(3) connected to GIS, mapping, and geography.
+Group~(1) is most relevant to us.
+Group~(3) is least relevant to us at this time.
+
+Overview references:
+B.\ Ripley, R-News, 1(2), 2001;
+CRAN Task View---Analysis of Spatial Data,
+search for ``cran task view spatial'';
+R Spatial Projects page at Spatial Analysis Laboratory of UIUC,
+search for ``Rgeo'';
+the R-sig-Geo mailing list,
+search for ``r-sig-geo''.
+
+\begin{itemize}
+\item[ads]
+Perform first- and second-order multi-scale analyses derived from
+Ripley's K-function, for univariate, multivariate and marked mapped data
+in rectangular, circular or irregular shaped sampling windows, with test
+of statitical significance based on Monte Carlo simulations.
+
+1.2-7, 2007-09-24.
+
+By R.\ Pelissier and F.\ Goreaud.
+
+\item[akima]
+Linear or cubic spline interpolation for irregular gridded data.
+
+0.2-3, 1998-08-20; 0.5-1, 2006-02-01.
+
+Fortran code by H. Akima, R port by Albrecht Gebhardt.
+
+\item[\emph{fields}]
+Fields is for curve, surface and function fitting with an emphasis on
+splines, spatial data and spatial statistics. The major methods include
+cubic, robust, and thin plate splines, multivariate Kriging and Kriging
+for large data sets. One main feature is any covariance function
+implemented in R can be used for spatial prediction. There are also
+useful functions for plotting and working with spatial data as images.
+This package also contains an implementation of a sparse matrix methods
+for large data sets.
+
+1.0, 2001-07-27; 4.1, 2007-11-12.
+
+By Doug Nychka.
+
+\item[\emph{geoR}]
+Geostatistical analysis including traditional, likelihood-based and
+Bayesian methods.
+
+Depends on \texttt{sp}.
+
+1.0.0, 2001; 1.6.20, 2007.
+
+
+By Paulo J.\ Ribeiro Jr.\ and Peter J.\ Diggle.
+
+Paulo J.\ Ribeiro Jr.\  and Peter J.\ Diggle, R-News, 1(2):15--18, June 2001.
+
+\item[\emph{geoRglm}]
+Functions for inference in generalised linear spatial models. The
+posterior and predictive inference is based on Markov chain Monte Carlo
+methods. Package \texttt{geoRglm} is an extension to the package
+\texttt{geoR}.
+
+Depends on \texttt{geoR}.
+
+0.4-1, 2002-02-13; 0.8-22, 2007-12-17.
+
+By Ole F.\ Christensen and Paulo J.\ Ribeiro Jr.
+
+Ole E.\ Christensen and Paulo J. Ribeiro Jr., R-News, 2(2), June 2002.
+
+\item[? gstat]
+variogram modelling; simple, ordinary and universal point or block
+(co)kriging, sequential Gaussian or indicator (co)simulation; variogram
+and variogram map plotting utility functions.
+
+Depends on \texttt{sp}.
+
+0.9-13, 2003-02-19; 0.9-43, 2008-02-03.
+
+By Edzer J.\ Pebesma.
+
+E.\ Pebesma, Computers \& Geosciences, 30:683--691, 2004.
+
+\item[maps]
+Display of maps. Projection code and larger maps are in separate
+packages (mapproj and mapdata).
+
+2.0-3, 2003-10-07; 2.0-39, 2007-10-14.
+
+\item[maptools]
+Set of tools for manipulating and reading geographic data, in particular
+ESRI shapefiles; C code used from shapelib. It includes binary access to
+GSHHS 1.5 shoreline files. The package also provides interface wrappers
+for exchanging spatial objects with packages such as PBSmapping,
+spatstat, maps, RArcInfo, Stata tmap, WinBUGS, Mondrian, and others.
+
+Depends on \texttt{sp}.
+
+0.2-2, 2003-08-12; 0.7-7, 2008-02-18.
+
+By Nicholas Lewin-Koh and Roger Bivand.
+
+\item[? ramps]
+Bayesian geostatistical modeling of Gaussian processes using a
+reparameterized and marginalized posterior sampling (RAMPS) algorithm
+designed to lower autocorrelation in MCMC samples. Package performance
+is tuned for large spatial datasets.
+
+Depends on \texttt{fields}, \texttt{maps}.
+
+0.6-1, 2007-12-16.
+
+By Brian J. Smith, Jun Yan, and Mary Kathryn Cowles.
+
+\item[\emph{RandomFields}]
+Simulation of Gaussian and extreme value random fields; conditional
+simulation; kriging.
+
+1.0.0, 2001-06-01; 1.3.30, 2008-02-16.
+
+By Martin Schlather.
+
+Martin Schlather, R-News, 1(2):18--20, June 2001.
+
+\item[RColorBrewer]
+The packages provides palettes for drawing nice maps shaded according to
+a variable.
+
+1.0-2, 2007-10-21.
+
+By Erich Neuwirth.
+
+\item[regress]
+Functions to fit Gaussian linear model by maximising the residual log
+likelihood where the covariance structure can be written as a linear
+combination of known matrices. Can be used for multivariate models and
+random effects models. Easy straight forward manner to specify random
+effects models, including random interactions.
+
+0.1, 2004-06-15; 1.0-0, 2006-06-09.
+
+By David Clifford and Peter McCullagh.
+
+\item[rgdal]
+Provides bindings to Frank Warmerdam's Geospatial Data Abstraction
+Library (GDAL) ($>=$ 1.3.1) and access to projection/transformation
+operations from the PROJ.4 library.
+Links R to GIS.
+A translator library for 60 raster geospatial data formats.
+
+Depends on \texttt{sp}.
+
+0.2-5, 2003-11-26; 0.5-24, 2008-02-05.
+
+By Timothy H.\ Keitt, Roger Bivand, Edzer Pebesma, Barry Rowlington.
+
+\item[\emph{sp}]
+A package that provides classes and methods for spatial data. The
+classes document where the spatial location information resides, for 2D
+or 3D data. Utility functions are provided, e.g. for plotting data as
+maps, spatial selection, as well as methods for retrieving coordinates,
+for subsetting, print, summary, etc.
+The intention of this package is to provide some sort of common
+infrastructure to spatial packages.
+
+0.7-3, 2005-04-28; 0.9-23, 2008-02-18.
+
+By Edzer J.\ Pebesma and Roger Bivand.
+
+Edzer J.\ Pebesma and Roger S.\ Bivand, R-News, 5(2), Nov 2005.
+
+\item[spatgraphs]
+Graphs, graph visualization and graph based summaries to be used as a
+tool in spatial point pattern analysis.
+
+0.52, 2007-11-14.
+
+\item[\emph{spatial}]
+(part of \texttt{VR})
+Trend surface analysis, kriging, and point processes.
+
+6.1-4, 1999-08-16; 7.2-41, 2008-02-16.
+
+By B.\ D.\ Ripley.
+
+Venables and Ripley, MASS, 4th ed., Springer, 2002.
+
+\item[? spatialCovariance]
+Functions that compute the spatial covariance matrix for the matern and
+power classes of spatial models, for data that arise on rectangular
+units. This code can also be used for the change of support problem and
+for spatial data that arise on irregularly shaped regions like counties
+or zipcodes by laying a fine grid of rectangles and aggregating the
+integrals in a form of Riemann integration.
+
+0.1, 2004-04-27; 0.5, 2005-05-09.
+
+By David Clifford.
+
+\item[spatstat]
+A package for analysing spatial data, mainly Spatial Point Patterns,
+including multitype/marked points and spatial covariates, in any
+two-dimensional spatial region.
+
+1.0-1, 2002-01-21; 1.12-7, 2008-02-11.
+
+By Adrian Baddeley and Rolf Turner.
+
+A.\ Baddeley and R.\ Turner, Journal of Statistical Software,
+12(6):1--42, 2005.
+
+\item[? spBayes]
+Fits Gaussian univariate and multivariate models with Markov chain Monte
+Carlo.
+
+0.0-1, 2006-10-01; 0.0-6, 2007-04-10.
+
+By Andrew O.\ Finley, Sudipto Banerjee, Bradley P.\ Carlin.
+
+\item[spdep]
+Spatial dependence; weighting schemes; statistics and models.
+
+Depends on \texttt{sp}, \texttt{spam}, \texttt{tripack}.
+
+0.1-2, 2002-03-20; 0.4-17, 2008-02-18.
+
+By Roger Bivand.
+
+\item[spgrass6]
+Interpreted interface between GRASS 6 geographical information system
+and R, based on starting R from within the GRASS environment.
+
+Depends on \texttt{sp}, \texttt{rgdal}.
+
+0.5-2, 2008-02-03.
+
+\item[splancs]
+Spatial and space-time point pattern analysis functions.
+
+Depends on \texttt{sp}.
+
+2.01-2, 2000-11-05; 2.01-23, 2007-08-23.
+
+By Barry Rowlingson and Peter Diggle.
+
+\item[spsurvey]
+This group of functions implements algorithms required for design and
+analysis of probability surveys such as those utilized by the U.S.
+Environmental Protection Agency's Environmental Monitoring and
+Assessment Program (EMAP).
+
+Depends on \texttt{sp}.
+
+1.6.2, 2007-03-07.
+
+By Tom Kincaid and Tony Olsen.
+
+\item[tgp]
+Bayesian nonstationary, semiparametric nonlinear regression and design
+by treed Gaussian processes with jumps to the limiting linear model
+(LLM). Special cases also implemented include Bayesian linear models,
+CART, treed linear models, stationary separable and isotropic Gaussian
+processes. Provides 1-d and 2-d plotting functions (with projection and
+slice capabilities) and tree drawing, designed for visualization of
+tgp-class output. Sensitivity analysis and multi-resolution models are
+supported, and a limited set of experimental design and adaptive
+sampling functions are also provided, including ALM, ALC, and expected
+improvement.
+
+1.0-1, 2006-01-05; 2.0-4, 2008-01-23.
+
+By Robert B.\ Gramacy and Matt A.\ Taddy.
+
+\item[? tripack]
+Triangulation of irregularly spaced data.
+
+1.0-1, 1998-08-20; 1.2-11, 2007.
+
+By R.\ J.\ Renka and Albrecht Gebhardt.
+
+\item[vardiag]
+Interactive variogram diagnostics.
+
+0.1, 2003-05-25; 0.1-1, 2007-10-21.
+
+By Ernst Glatzer.
+
+\end{itemize}
+
+\end{document}
+

@@ -1,0 +1,9 @@
+Package: hooah
+Version: 0.04
+Date: 2011-11-21
+Title: R fragments
+Author: Zepu Zhang <zepu.zhang@gmail.com>
+Maintainer: Zepu Zhang <zepu.zhang@gmail.com>
+Description: Various R routines.
+License: for personal use
+Packaged: whatever time; zpzhang
