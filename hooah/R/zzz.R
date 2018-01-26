@@ -7,3 +7,10 @@ function(...) {
 
 }
 
+
+.onLoad <- function(libname, pkgname)
+{
+    do.call(setOptions, .defaultOptions())
+    options(error = utils.recover)
+}
+
